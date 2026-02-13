@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kausheek Nayak | Portfolio</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    html { scroll-behavior: smooth; }
+    .gradient-text {
+      background: linear-gradient(to right, #06b6d4, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-950 text-white font-sans">
+
+<!-- HEADER -->
+<header class="p-6 flex justify-between items-center border-b border-gray-800 sticky top-0 bg-gray-900 z-50">
+  <h1 class="text-3xl font-bold gradient-text">Kausheek Nayak</h1>
+  <nav class="space-x-6 text-sm">
+    <a href="#about" class="hover:text-cyan-400">About</a>
+    <a href="#projects" class="hover:text-cyan-400">Projects</a>
+    <a href="#contact" class="hover:text-cyan-400">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="px-6 py-24 text-center" data-aos="fade-up">
+  <h2 class="text-5xl font-bold mb-4 gradient-text">Hi, I'm Kausheek 👋</h2>
+  <p class="text-gray-400 max-w-xl mx-auto mb-10">
+    Developer passionate about building powerful applications and turning ideas into reality.
+  </p>
+  <a href="#contact" class="bg-cyan-500 hover:bg-cyan-600 px-6 py-3 rounded-full transition-all">
+    Contact Me
+  </a>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="px-6 py-20 bg-gray-900" data-aos="fade-right">
+  <div class="max-w-3xl mx-auto text-center">
+    <h3 class="text-3xl font-semibold mb-4">About Me</h3>
+    <p class="text-gray-400">
+      I love coding, hackathons, and solving real-world problems.
+      My mindset combines sports discipline with technical creativity.
+    </p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="px-6 py-20" data-aos="fade-up">
+  <div class="max-w-5xl mx-auto text-center">
+    <h3 class="text-3xl font-semibold mb-10">My Projects</h3>
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+        <h4 class="text-xl font-bold mb-2">Advanced Portfolio</h4>
+        <p class="text-gray-400">Modern animated portfolio built with Tailwind.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+        <h4 class="text-xl font-bold mb-2">Hackathon App</h4>
+        <p class="text-gray-400">Flutter + Firebase real-time app.</p>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
+        <h4 class="text-xl font-bold mb-2">Quiz Engine</h4>
+        <p class="text-gray-400">Interactive JavaScript quiz system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="px-6 py-20 bg-gray-900" data-aos="fade-up">
+  <div class="max-w-xl mx-auto text-center">
+    <h3 class="text-3xl font-semibold mb-6">Contact Me</h3>
+
+    <form id="contact-form" class="space-y-6 text-left">
+      <input type="text" name="from_name" placeholder="Your Name"
+        class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-cyan-400 outline-none"
+        required>
+
+      <input type="email" name="from_email" placeholder="Your Email"
+        class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-cyan-400 outline-none"
+        required>
+
+      <textarea name="message" rows="5" placeholder="Your Message"
+        class="w-full p-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-cyan-400 outline-none"
+        required></textarea>
+
+      <button type="submit"
+        class="w-full bg-cyan-500 hover:bg-cyan-600 py-3 rounded-lg transition-all">
+        Send Message 🚀
+      </button>
+    </form>
+
+    <p id="form-status" class="mt-4 text-sm"></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="p-6 text-center text-gray-500 text-sm border-t border-gray-800 bg-gray-900">
+  &copy; <span id="year"></span> Kausheek Nayak
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+  AOS.init();
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Initialize EmailJS
+  emailjs.init("pNIOCOdJqzz_3qpAE");
+
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm("service_1vt9pgq", "template_320ufoa", this)
+      .then(function() {
+        status.innerHTML = "✅ Message sent successfully!";
+        status.classList.remove("text-red-400");
+        status.classList.add("text-green-400");
+        form.reset();
+      }, function(error) {
+        status.innerHTML = "❌ Failed to send message.";
+        status.classList.remove("text-green-400");
+        status.classList.add("text-red-400");
+        console.log(error);
+      });
+  });
+</script>
+
+</body>
+</html>
